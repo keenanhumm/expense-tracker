@@ -1,16 +1,21 @@
 import React from "react";
 import "../style/App.css";
+import { GlobalProvider } from "../context/GlobalContext";
 import { Header } from "./Header";
 import { Balance } from "./Balance";
 import { BalanceSummary } from "./BalanceSummary";
+import { TransactionList } from "./TransactionList";
+import { AddTransaction } from "./AddTransaction";
 
 function App() {
   return (
-    <div className="App">
+    <GlobalProvider>
       <Header />
       <Balance />
       <BalanceSummary />
-    </div>
+      <TransactionList />
+      <AddTransaction />
+    </GlobalProvider>
   );
 }
 
