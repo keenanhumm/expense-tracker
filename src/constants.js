@@ -1,26 +1,27 @@
+import { v4 as uuidv4 } from "uuid";
 export const INITIAL_TRANSACTIONS = [
   {
-    id: 1,
+    id: uuidv4(),
     amount: 100,
     description: "Payroll",
   },
   {
-    id: 2,
+    id: uuidv4(),
     amount: -1,
     description: "Snickers",
   },
   {
-    id: 3,
+    id: uuidv4(),
     amount: -3,
     description: "Shoelaces",
   },
   {
-    id: 4,
+    id: uuidv4(),
     amount: -6,
     description: "Coffee",
   },
   {
-    id: 5,
+    id: uuidv4(),
     amount: -19,
     description: "Tie",
   },

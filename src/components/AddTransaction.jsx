@@ -1,18 +1,30 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useContext, useCallback } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 export const AddTransaction = () => {
+  const { addTransaction } = useContext(GlobalContext);
   const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
 
   const handleDescriptionChange = useCallback(
     (e) => setDescription(e.target.value),
     []
   );
   const handleAmountChange = useCallback((e) => setAmount(e.target.value), []);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      addTransaction(description, amount);
+      setAmount(0);
+      setDescription("");
+    },
+    [addTransaction, amount, description]
+  );
+
   return (
     <>
       <h3>Add new transaction</h3>
-      <form id="form">
+      <form id="form" onSubmit={handleSubmit}>
         <div className="form-control">
           <label htmlFor="description">Description</label>
           <input
@@ -21,6 +33,7 @@ export const AddTransaction = () => {
             placeholder="Enter description..."
             value={description}
             onChange={handleDescriptionChange}
+            required
           />
         </div>
         <div className="form-control">
@@ -34,9 +47,12 @@ export const AddTransaction = () => {
             placeholder="Enter amount..."
             value={amount}
             onChange={handleAmountChange}
+            required
           />
         </div>
-        <button className="btn">Add transaction</button>
+        <button className="btn" type="submit">
+          Add transaction
+        </button>
       </form>
     </>
   );
